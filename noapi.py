@@ -2,6 +2,10 @@ from flask import Flask, request, jsonify, render_template
 import requests
 import openai   # If you want Gemini, replace this with google.generativeai
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # Loads variables from .env into environment
 
 app = Flask(__name__)
 
@@ -9,15 +13,13 @@ app = Flask(__name__)
 # API KEYS (replace with real keys)
 # -------------------------------
 
-OPENWEATHER_KEY = ""
-GOOGLE_MAPS_KEY = ""
-AMADEUS_KEY = ""
-OPENAI_KEY = ""
-AMADEUS_CLIENT_ID = ""
-AMADEUS_CLIENT_SECRET = ""
+OPENWEATHER_KEY = os.getenv('OPENWEATHER_KEY')
+GOOGLE_MAPS_KEY = os.getenv('GOOGLE_MAPS_KEY')
+AMADEUS_CLIENT_ID = os.getenv('AMADEUS_CLIENT_ID')
+AMADEUS_CLIENT_SECRET = os.getenv('AMADEUS_CLIENT_SECRET')
+OPENAI_KEY = os.getenv('OPENAI_KEY')
 
 openai.api_key = OPENAI_KEY
-
 
 # -------------------------------
 # WEATHER API
