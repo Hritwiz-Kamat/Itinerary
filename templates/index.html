@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Itinerary Planner</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>🌍 Travel Itinerary Planner</h1>
+        <p>Plan your perfect trip with real-time weather, flights, and AI-generated itineraries!</p>
+
+        <form id="itinerary-form">
+            <div class="form-group">
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" placeholder="e.g., Delhi" required>
+            </div>
+
+            <div class="form-group">
+                <label for="days">Number of Days:</label>
+                <input type="number" id="days" min="1" max="10" placeholder="e.g., 3" required>
+            </div>
+
+            <button type="submit">Generate Itinerary</button>
+        </form>
+
+        <div id="loading" style="display: none;">
+            <p>⏳ Generating your itinerary... Please wait.</p>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
