@@ -2,39 +2,109 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Itinerary Planner</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Planner</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style2.css?v=5">
+    <meta name="description"
+        content="Plan clean, day-wise itineraries with a polished UI. Save, revisit, and export your trips.">
 </head>
 
 <body>
-    <div class="container">
-        <h1>🌍 Travel Itinerary Planner</h1>
-        <p>Plan your perfect trip with real-time weather, flights, and AI-generated itineraries!</p>
-
-        <form id="itinerary-form">
-            <div class="form-group">
-                <label for="destination">Destination:</label>
-                <input type="text" id="destination" placeholder="e.g., Delhi" required>
+    <!-- Header -->
+    <header>
+        <div class="nav">
+            <div class="brand">
+                <span class="badge" aria-hidden="true">✈️</span>
+                <span>Travel Planner</span>
             </div>
-
-            <div class="form-group">
-                <label for="days">Number of Days:</label>
-                <input type="number" id="days" min="1" max="10" placeholder="e.g., 3" required>
-            </div>
-
-            <button type="submit">Generate Itinerary</button>
-        </form>
-
-        <div id="loading" style="display: none;">
-            <p>⏳ Generating your itinerary... Please wait.</p>
+            <nav aria-label="Primary">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#plan">Plan</a></li>
+                    <li><a href="#saved">Saved</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
 
-        <div id="results"></div>
-    </div>
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="hero-card">
+            <h1>Plan beautiful trips in seconds.</h1>
+            <p>Create a clean, day-wise itinerary with images. Save it, revisit it, and export when you’re done.</p>
+            <a href="#plan"><button aria-label="Jump to plan form">Start Planning</button></a>
+            <div class="features" aria-hidden="true" style="margin-top:12px">
+                <div class="chip">Fast day-wise plans</div>
+                <div class="chip">Auto images</div>
+                <div class="chip">Save & revisit</div>
+                <div class="chip">Export/Print</div>
+            </div>
+        </div>
+        <figure class="hero-art">
+            <img id="heroImage"
+                src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop"
+                alt="Scenic travel imagery">
+        </figure>
+    </section>
 
-    <script src="/static/script.js"></script>
+    <!-- Planner -->
+    <section id="plan">
+        <div class="container">
+            <h2 style="margin:0 0 12px">Plan Your Trip</h2>
+
+            <!-- FORM -->
+            <form id="tripForm" novalidate>
+                <!-- Destination + separate submit -->
+                <div>
+                    <label for="destination">Destination</label>
+                    <input type="text" id="destination" name="destination" placeholder="e.g., Paris, Tokyo, Jaipur"
+                        required aria-required="true" autocomplete="off">
+
+                    <!-- NEW: submit just for gallery -->
+                    <button type="button" id="gallerySubmit" class="btn-secondary" style="margin-top:8px">
+                        Submit Destination
+                    </button>
+
+                    <div id="destHint" class="hint" style="display:none">
+                        Please enter a destination (min 2 characters).
+                    </div>
+                </div>
+
+                <!-- Days (prefilled so main submit is valid) -->
+                <div>
+                    <label for="days">Number of Days</label>
+                    <input type="number" id="days" name="days" placeholder="e.g., 3" min="1" max="30" required
+                        aria-required="true" value="3">
+                    <div id="daysHint" class="hint" style="display:none">Days must be between 1 and 30.</div>
+                </div>
+
+                <!-- Main submit + export -->
+                <button type="submit">Generate Itinerary</button>
+                <button type="button" id="exportBtn" class="btn-secondary" title="Print or save as PDF">Export</button>
+            </form>
+
+            <!-- Results -->
+            <div id="itineraryOutput" class="itins" aria-live="polite" aria-busy="false"></div>
+
+            <!-- Saved -->
+            <div id="saved" class="saved">
+                <h3>Saved Itineraries</h3>
+                <div id="savedList" class="saved-list" aria-live="polite"></div>
+            </div>
+
+            <!-- Gallery -->
+            <div style="margin-top:22px">
+                <h3>Gallery</h3>
+                <div class="gallery" id="gallery"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>© 2025 Travel Planner</footer>
+    <script src="../static/script2.js"></script>
 </body>
 
 </html>
