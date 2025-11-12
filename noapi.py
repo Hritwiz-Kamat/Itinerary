@@ -18,7 +18,6 @@ AMADEUS_CLIENT_ID = os.getenv('AMADEUS_CLIENT_ID')
 AMADEUS_CLIENT_SECRET = os.getenv('AMADEUS_CLIENT_SECRET')
 OPENAI_KEY = os.getenv('OPENAI_KEY')
 
-# Initialize OpenAI client (NEW v1.0+ format)
 client = OpenAI(api_key=OPENAI_KEY)
 
 # ==============================
